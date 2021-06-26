@@ -1,5 +1,5 @@
 import '@babel/polyfill';
-import express from 'express';
+import express, { json } from 'express';
 import { dbConnect } from './config/db';
 import studentsRouter from './router/studentRouter';
 
@@ -7,6 +7,7 @@ dbConnect();
 
 const app = express();
 
+app.use(json());
 app.use('/students', studentsRouter);
 
 app.use('/', (req, res) => {
